@@ -102,7 +102,7 @@ output {
 sudo systemctl restart logstash
 
 #Step 7: Sending Logs to Logstash
-Configure your servers and applications to forward logs to the Logstash server's UDP port 514. For example, to forward syslog from a client server, modify /etc/rsyslog.conf or create a file in /etc/rsyslog.d/ with.
+#Configure your servers and applications to forward logs to the Logstash server's UDP port 514. For example, to forward syslog from a client server, modify /etc/rsyslog.conf or create a file in /etc/rsyslog.d/ with.
 
 #Run this command to create a new file:
 sudo nano /etc/rsyslog.d/90-logstash.conf
@@ -139,14 +139,15 @@ Now, you will get box to enter verification code. To get the verification code, 
 /usr/share/kibana/bin/kibana-verification-code
 You will get the 6 digit verification code. Fill that code in the browser. Once you do it will process the setup.
 
-Once the process gets completed you will received a login form. Enter:
+#Once the process gets completed you will received a login form. Enter:
 
 Username: elastic
 password: <You have received it in step 3 after the Elasticsearch installation gets completed.>
 
-if you did not access your generated password, create a new password for elastic, Run:
+#if you did not access your generated password, create a new password for elastic, Run:
 /usr/share/elasticsearch/bin/elasticsearch-reset-password -u elastic
-And set a new password for your elastic 
+
+#And set a new password for your elastic 
 
 sudo systemctl daemon-reload
 sudo systemctl enable elasticsearch.service
