@@ -158,6 +158,7 @@ sudo nano /etc/kibana/kibana.yml
 Your last section should look like this 
 
 # This section was automatically generated during setup.
+#NB: Substitute 192.168.20.104 with your servers IP address
 elasticsearch.hosts: [https://192.168.20.104:9200]
 elasticsearch.serviceAccountToken: AAEAAWVsYXN0aWMva2liYW5hL2Vucm9sbC1wcm9jZXNzLXRva2VuLTE3NjgyNTk3MTM2NDQ6RVZQNWxKZ29SYjJUbi1GUVQ5VXdVQQ
 elasticsearch.ssl.certificateAuthorities: [/var/lib/kibana/ca_1768259716526.crt]
