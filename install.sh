@@ -152,3 +152,41 @@ password: <You have received it in step 3 after the Elasticsearch installation g
 sudo systemctl daemon-reload
 sudo systemctl enable elasticsearch.service
 sudo systemctl start elasticsearch.service
+
+TO ENABLE FLEET: 
+sudo nano /etc/kibana/kibana.yml
+Your last section should look like this 
+
+# This section was automatically generated during setup.
+elasticsearch.hosts: [https://192.168.20.104:9200]
+elasticsearch.serviceAccountToken: AAEAAWVsYXN0aWMva2liYW5hL2Vucm9sbC1wcm9jZXNzLXRva2VuLTE3NjgyNTk3MTM2NDQ6RVZQNWxKZ29SYjJUbi1GUVQ5VXdVQQ
+elasticsearch.ssl.certificateAuthorities: [/var/lib/kibana/ca_1768259716526.crt]
+#xpack.fleet.outputs: [{id: fleet-default-output, name: default, is_default: true, is_default_monitoring: true, type: elasticsearch, hosts: [https://192.168.20.104:9200], ca_trusted_fingerprint: 39b2d7d5c14b8805577b307264b5f66eb32f54741cc231c49ddd4e5c95be4dfc}]
+
+xpack.encryptedSavedObjects.encryptionKey: "9bfb0d2d5cbd4d69a0658fd390f0db3ee59c9ac425dbf0e99ff878c5d16c3019"
+
+
+xpack.fleet.outputs:
+  - id: fleet-default-output
+    name: default
+    type: elasticsearch
+    hosts:
+      - https://192.168.20.104:9200
+    is_default: true
+    is_default_monitoring: true
+    ca_trusted_fingerprint: 39b2d7d5c14b8805577b307264b5f66eb32f54741cc231c49ddd4e5c95be4dfc
+
+xpack.fleet.agents.enabled: true
+xpack.fleet.agents.fleet_server.hosts:
+  - https://192.168.20.104:8220
+
+#To generate the xpack.encryptedSavedObjects.encryptionKey:
+openssl rand -hex 32
+and paste the 32 hexadecimal 32 string into that section
+
+#Restart Kibana 
+sudo systemctl restart kibana
+sudo systemctl status kibana
+
+http://192.168.20.104:5601
+
